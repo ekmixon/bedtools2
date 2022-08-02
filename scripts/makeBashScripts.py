@@ -48,14 +48,11 @@ def main():
                  'makewindows': 'windowMaker'}
 
     # create a BASH script for each old tool, mapping to the new CLI command.
-    for tool in tool_map:
+    for tool, old in tool_map.items():
         new = tool
-        old = tool_map[tool]
-        
-        script = open('bin/'  + old, 'w')
-        script.write("#!/bin/sh\n")
-        script.write("${0%/*}/bedtools " + new + " \"$@\"\n")
-        script.close()
+        with open(f'bin/{old}', 'w') as script:
+            script.write("#!/bin/sh\n")
+            script.write("${0%/*}/bedtools " + new + " \"$@\"\n")
 
 if __name__ == "__main__":
     main()

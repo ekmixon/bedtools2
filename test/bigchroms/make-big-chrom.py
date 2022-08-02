@@ -12,7 +12,7 @@ extra = "ACTGACCCCGAGACGTTTGCATCCTGCACAGCTAGAGATCCTTTATTAAAAGCACACTGT"
 with open("bigx.fasta", "wb") as fh:
     fh.write(">chrbig\n")
     line = ("N" * linelen) + "\n"
-    for i in xrange(0, size, len(line) - 1):
+    for _ in xrange(0, size, len(line) - 1):
         fh.write(line)
     fh.write(extra + "\n")
 fh.close()
